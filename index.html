@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aftab — Clicklo | Software Developer &amp; Founder</title>
+<meta name="description" content="Aftab builds software businesses run on — booking plugins, point-of-sale systems, and trade platforms, under the Clicklo brand." />
+
+<!--
+  ============================================================
+  IMAGE SLOTS — drop your files into /images/ with these exact
+  names and everything will pick them up automatically.
+  See README.md for the full list + recommended sizes.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #090c14;
+    --bg-alt: #0e1425;
+    --surface: #121a2f;
+    --line: rgba(242,244,250,0.09);
+    --blue: #3e6bff;
+    --blue-dim: rgba(62,107,255,0.16);
+    --amber: #ffb020;
+    --text: #f2f4fa;
+    --text-dim: #8a91ac;
+    --text-faint: #565d78;
+    --radius: 4px;
+    --ease: cubic-bezier(.16,.84,.44,1);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', -apple-system, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+    cursor:none;
+  }
+  ::selection{ background:var(--blue); color:#fff; }
+  img{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  h1,h2,h3,h4{ font-family:'Sora', sans-serif; font-weight:700; letter-spacing:-0.02em; }
+  .wrap{ max-width:1240px; margin:0 auto; padding:0 6vw; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- custom cursor (depth cue) ---------- */
+  .cursor, .cursor-ring{
+    position:fixed; top:0; left:0; pointer-events:none; z-index:9999;
+    border-radius:50%; transform:translate(-50%,-50%);
+  }
+  .cursor{ width:6px; height:6px; background:var(--amber); }
+  .cursor-ring{ width:34px; height:34px; border:1px solid rgba(242,244,250,0.35); transition:width .25s var(--ease), height .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease); }
+  .cursor-ring.hover{ width:64px; height:64px; border-color:var(--blue); background:var(--blue-dim); }
+  @media (hover:none){ .cursor,.cursor-ring{ display:none; } body{ cursor:auto; } }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:500;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:28px 6vw; mix-blend-mode:difference;
+  }
+  .brandmark{ display:flex; align-items:center; gap:10px; font-family:'Sora'; font-weight:700; font-size:1.05rem; }
+  .brandmark .dot{ width:9px; height:9px; border-radius:2px; background:var(--blue); display:inline-block; }
+  .navlinks{ display:flex; gap:36px; font-size:0.92rem; color:var(--text-dim); }
+  .navlinks a{ position:relative; padding-bottom:3px; }
+  .navlinks a::after{ content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--text); transition:width .3s var(--ease); }
+  .navlinks a:hover{ color:var(--text); }
+  .navlinks a:hover::after{ width:100%; }
+  @media (max-width:720px){ .navlinks{ display:none; } }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+    padding:140px 6vw 80px; overflow:hidden;
+  }
+  .hero-word{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    font-family:'Sora'; font-weight:800; font-size:min(30vw, 320px); line-height:1;
+    color:transparent; -webkit-text-stroke:1px rgba(242,244,250,0.07);
+    white-space:nowrap; pointer-events:none; user-select:none; z-index:0;
+    will-change:transform;
+  }
+  .hero-inner{ position:relative; z-index:2; }
+  .eyebrow{ display:flex; align-items:center; gap:10px; color:var(--text-dim); font-size:0.95rem; margin-bottom:28px; }
+  .eyebrow .bar{ width:28px; height:1px; background:var(--amber); }
+  .hero h1{
+    font-size:clamp(2.6rem, 6.2vw, 5.4rem); line-height:1.03; max-width:16ch; margin-bottom:28px;
+  }
+  .hero h1 .accent{ color:var(--blue); }
+  .hero p.lede{ max-width:46ch; color:var(--text-dim); font-size:1.15rem; margin-bottom:44px; }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:15px 28px; font-size:0.95rem; font-weight:500;
+    border-radius:var(--radius); transition:transform .3s var(--ease), background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .btn-solid{ background:var(--text); color:var(--bg); }
+  .btn-solid:hover{ background:var(--blue); color:#fff; transform:translateY(-2px); }
+  .btn-line{ border:1px solid var(--line); color:var(--text); }
+  .btn-line:hover{ border-color:var(--text); transform:translateY(-2px); }
+
+  .hero-meta{
+    position:absolute; right:6vw; bottom:56px; z-index:2; text-align:right;
+    color:var(--text-faint); font-size:0.82rem; display:flex; flex-direction:column; gap:6px;
+  }
+  @media (max-width:720px){ .hero-meta{ display:none; } }
+
+  /* ---------- marquee ---------- */
+  .marquee-strip{
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    overflow:hidden; white-space:nowrap; padding:22px 0; background:var(--bg-alt);
+  }
+  .marquee-track{ display:inline-flex; animation:scrollmq 32s linear infinite; }
+  .marquee-track span{
+    font-family:'Sora'; font-weight:600; font-size:1.2rem; color:var(--text-faint); padding:0 28px;
+    display:inline-flex; align-items:center; gap:28px;
+  }
+  .marquee-track span b{ color:var(--text); font-weight:600; }
+  .marquee-track .sep{ width:5px; height:5px; border-radius:50%; background:var(--amber); display:inline-block; }
+  @keyframes scrollmq{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* ---------- section shells ---------- */
+  section{ padding:140px 0; position:relative; }
+  .sec-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:40px; margin-bottom:72px; flex-wrap:wrap; }
+  .sec-head h2{ font-size:clamp(1.9rem, 3.4vw, 2.8rem); max-width:14ch; }
+  .sec-head .sub{ max-width:34ch; color:var(--text-dim); font-size:1rem; }
+  .tag{
+    display:inline-block; font-size:0.78rem; color:var(--text-dim); border:1px solid var(--line);
+    padding:6px 12px; border-radius:var(--radius); margin-bottom:18px;
+  }
+
+  /* ---------- about ---------- */
+  .about-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:80px; align-items:start; }
+  .about-grid p{ color:var(--text-dim); font-size:1.08rem; margin-bottom:20px; max-width:52ch; }
+  .about-grid p strong{ color:var(--text); font-weight:600; }
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+  .chip{
+    font-size:0.85rem; padding:10px 16px; border:1px solid var(--line); border-radius:var(--radius);
+    color:var(--text-dim); transition:border-color .3s, color .3s;
+  }
+  .chip:hover{ border-color:var(--blue); color:var(--text); }
+  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; gap:40px; } }
+
+  /* ---------- clicklo company panel ---------- */
+  .clicklo-panel{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:0; border:1px solid var(--line); border-radius:8px; overflow:hidden;
+  }
+  .clicklo-visual{
+    background:linear-gradient(160deg, var(--surface), var(--bg-alt));
+    display:flex; align-items:center; justify-content:center; padding:60px; position:relative; min-height:340px;
+    perspective:900px;
+  }
+  .clicklo-mark{
+    width:150px; height:150px; border-radius:32px; background:linear-gradient(150deg, var(--blue), #1c2a5e);
+    display:flex; align-items:center; justify-content:center; transform-style:preserve-3d;
+    box-shadow:0 40px 80px -30px rgba(62,107,255,0.45);
+  }
+  .clicklo-mark svg{ width:64px; height:64px; }
+  .clicklo-copy{ padding:64px; display:flex; flex-direction:column; justify-content:center; }
+  .clicklo-copy h3{ font-size:1.9rem; margin-bottom:18px; }
+  .clicklo-copy p{ color:var(--text-dim); margin-bottom:16px; max-width:48ch; }
+  .clicklo-links{ display:flex; gap:24px; margin-top:20px; font-size:0.88rem; color:var(--text-dim); flex-wrap:wrap; }
+  .clicklo-links a:hover{ color:var(--text); }
+  @media (max-width:860px){ .clicklo-panel{ grid-template-columns:1fr; } .clicklo-copy{ padding:40px 32px; } }
+
+  /* ---------- case studies ---------- */
+  .case{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+    padding:64px 0; border-bottom:1px solid var(--line);
+  }
+  .case:nth-child(even){ direction:rtl; }
+  .case:nth-child(even) > *{ direction:ltr; }
+  .case-media{
+    position:relative; aspect-ratio:4/3; border-radius:8px; overflow:hidden; border:1px solid var(--line);
+    background:var(--surface);
+  }
+  .case-media .ph{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+    color:var(--text-faint); font-size:0.82rem; text-align:center; padding:20px;
+    background:
+      radial-gradient(circle at 30% 20%, var(--blue-dim), transparent 55%),
+      linear-gradient(145deg, var(--surface), var(--bg-alt));
+  }
+  .case-media .ph b{ color:var(--text-dim); font-family:'Sora'; font-size:0.95rem; font-weight:600; }
+  .case-media img{ width:100%; height:100%; object-fit:cover; }
+  .case-body .tag{ margin-bottom:20px; }
+  .case-body h3{ font-size:clamp(1.6rem, 2.6vw, 2.2rem); margin-bottom:18px; max-width:16ch; }
+  .case-body p{ color:var(--text-dim); margin-bottom:24px; max-width:48ch; }
+  .case-features{ list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+  .case-features li{ font-size:0.9rem; color:var(--text-dim); display:flex; gap:10px; align-items:flex-start; }
+  .case-features li::before{ content:''; width:4px; height:4px; border-radius:50%; background:var(--amber); margin-top:9px; flex-shrink:0; }
+  .case-link{ font-size:0.9rem; color:var(--text); border-bottom:1px solid var(--line); padding-bottom:3px; }
+  .case-link:hover{ border-color:var(--text); }
+  @media (max-width:860px){
+    .case, .case:nth-child(even){ grid-template-columns:1fr; direction:ltr; gap:32px; padding:48px 0; }
+  }
+
+  /* projects gallery (websites) */
+  .proj-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:24px; }
+  .proj-card{
+    aspect-ratio:16/11; border-radius:8px; overflow:hidden; border:1px solid var(--line); position:relative;
+    background:var(--surface);
+  }
+  .proj-card .ph{
+    position:absolute; inset:0; display:flex; align-items:flex-end; padding:20px;
+    background:linear-gradient(160deg, var(--surface), var(--bg-alt));
+    color:var(--text-faint); font-size:0.8rem;
+  }
+  .proj-card img{ width:100%; height:100%; object-fit:cover; }
+  .proj-card .label{ position:absolute; left:20px; bottom:18px; font-family:'Sora'; font-weight:600; color:var(--text-dim); font-size:0.9rem; z-index:2; }
+  @media (max-width:720px){ .proj-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- contact / CTA ---------- */
+  .contact{ text-align:left; }
+  .contact h2{
+    font-size:clamp(2.4rem, 7vw, 5.6rem); line-height:1.02; margin-bottom:40px; max-width:14ch;
+  }
+  .contact-row{ display:flex; justify-content:space-between; align-items:flex-end; gap:40px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:40px; }
+  .contact-links{ display:flex; flex-direction:column; gap:14px; }
+  .contact-links a{ font-size:1.4rem; font-family:'Sora'; font-weight:600; }
+  .contact-links a:hover{ color:var(--blue); }
+  .contact-social{ display:flex; gap:22px; color:var(--text-dim); font-size:0.9rem; }
+  .contact-social a:hover{ color:var(--text); }
+
+  footer{ padding:32px 6vw; border-top:1px solid var(--line); display:flex; justify-content:space-between; color:var(--text-faint); font-size:0.8rem; flex-wrap:wrap; gap:10px; }
+
+  /* reveal-on-scroll utility */
+  .reveal{ opacity:0; transform:translateY(28px); }
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<nav>
+  <div class="brandmark"><span class="dot"></span>Clicklo</div>
+  <div class="navlinks">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#clicklo">Company</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-word" id="heroWord">CLICKLO</div>
+    <div class="hero-inner wrap" style="padding:0; max-width:100%;">
+      <div class="eyebrow"><span class="bar"></span>Software developer &amp; founder</div>
+      <h1 class="reveal" id="heroTitle">I build the software <span class="accent">businesses run on.</span></h1>
+      <p class="lede reveal">Aftab — I design, build and ship products end to end: booking systems, point-of-sale software, trade platforms, and the websites that sell them. Based in Pakistan, working with teams everywhere.</p>
+      <div class="hero-ctas reveal">
+        <a href="#work" class="btn btn-solid">See the work</a>
+        <a href="#contact" class="btn btn-line">Start a project</a>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <span>Currently building — Clicklo POS, Tradefix</span>
+      <span>Islamabad, Pakistan</span>
+    </div>
+  </section>
+
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span><b>Full-stack development</b><i class="sep"></i>Product planning<i class="sep"></i>System architecture<i class="sep"></i><b>Team management</b><i class="sep"></i>Execution<i class="sep"></i>UI/UX direction<i class="sep"></i></span>
+      <span><b>Full-stack development</b><i class="sep"></i>Product planning<i class="sep"></i>System architecture<i class="sep"></i><b>Team management</b><i class="sep"></i>Execution<i class="sep"></i>UI/UX direction<i class="sep"></i></span>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="reveal">A developer who ships, not just codes.</h2>
+        <p class="sub reveal">From first sketch to a client using it daily — I own the full lifecycle.</p>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p class="reveal">I started as a developer and grew into running <strong>Clicklo</strong>, a software company building tools for real businesses — travel agencies, retail shops, and traders. That means every project I take on gets planned, built, tested and supported by the same person who understands why it exists.</p>
+          <p class="reveal">I split my time between hands-on development and the less glamorous parts that actually decide whether software survives contact with real users: scoping the right features, managing timelines, and staying close to feedback after launch.</p>
+        </div>
+        <div class="reveal">
+          <div class="chips">
+            <span class="chip">Full-stack development</span>
+            <span class="chip">Product planning</span>
+            <span class="chip">System architecture</span>
+            <span class="chip">Project execution</span>
+            <span class="chip">Team management</span>
+            <span class="chip">Client communication</span>
+            <span class="chip">Desktop applications</span>
+            <span class="chip">UI/UX direction</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLICKLO COMPANY ============ -->
+  <section id="clicklo">
+    <div class="wrap">
+      <div class="clicklo-panel reveal">
+        <div class="clicklo-visual">
+          <!--
+            IMAGE SLOT (optional): replace the SVG mark below with
+            <img src="images/clicklo-logo.png" alt="Clicklo logo">
+            Use the 1024x1024 icon you already created for Clicklo POS.
+          -->
+          <div class="clicklo-mark" id="clickloMark">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 3L20 10.5L12.8 12.8L10.5 20L4 3Z" fill="#fff"/></svg>
+          </div>
+        </div>
+        <div class="clicklo-copy">
+          <div class="tag">Company</div>
+          <h3>Clicklo</h3>
+          <p>Clicklo is the software company I own and run — where the products on this page come from. It's the umbrella for everything I build for clients: booking plugins, point-of-sale systems, and the sites that carry them.</p>
+          <p>If you're hiring for a project rather than a person, this is who you'd be working with.</p>
+          <div class="clicklo-links">
+            <a href="mailto:aftab@clicklo.pk">aftab@clicklo.pk</a>
+            <a href="#" target="_blank" rel="noopener">/clicklo on socials</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="reveal">Selected work</h2>
+        <p class="sub reveal">Four kinds of software, one build philosophy.</p>
+      </div>
+
+      <!-- Case 1: Websites / Projects -->
+      <div class="case reveal">
+        <div class="case-media">
+          <div class="ph">
+            <b>Project gallery</b>
+            <!-- IMAGE SLOTS: images/project-1.jpg … project-4.jpg (see proj-grid below) -->
+            Website thumbnails go in the grid on the right →
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="proj-grid">
+            <div class="proj-card"><div class="ph">Project 1</div><div class="label">Website</div>
+              <!-- <img src="images/project-1.jpg" alt="Project 1"> -->
+            </div>
+            <div class="proj-card"><div class="ph">Project 2</div><div class="label">Website</div>
+              <!-- <img src="images/project-2.jpg" alt="Project 2"> -->
+            </div>
+            <div class="proj-card"><div class="ph">Project 3</div><div class="label">Website</div>
+              <!-- <img src="images/project-3.jpg" alt="Project 3"> -->
+            </div>
+            <div class="proj-card"><div class="ph">Project 4</div><div class="label">Website</div>
+              <!-- <img src="images/project-4.jpg" alt="Project 4"> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 2: Umrah Designer (Plugin) -->
+      <div class="case reveal">
+        <div class="case-media">
+          <!-- IMAGE SLOT: images/umrah-designer-thumb.jpg -->
+          <div class="ph"><b>Umrah Designer</b>Screenshot / mockup goes here</div>
+        </div>
+        <div class="case-body">
+          <div class="tag">Plugin</div>
+          <h3>Umrah Designer</h3>
+          <p>A booking plugin that travel agencies embed directly into their own websites, turning a static enquiry form into a guided, app-like booking flow.</p>
+          <ul class="case-features">
+            <li>Visual, card-based package selection with a live price bar</li>
+            <li>Smart next-step suggestions based on what a customer already picked</li>
+            <li>Auto-generated PDF quote on submission</li>
+            <li>Full backend dashboard — agencies control pricing and fields themselves</li>
+          </ul>
+          <a href="#contact" class="case-link">Ask about this for your agency</a>
+        </div>
+      </div>
+
+      <!-- Case 3: Tradefix (Sale/Purchase, Online) -->
+      <div class="case reveal">
+        <div class="case-media">
+          <!-- IMAGE SLOT: images/tradefix-thumb.jpg -->
+          <div class="ph"><b>Tradefix</b>Screenshot / mockup goes here</div>
+        </div>
+        <div class="case-body">
+          <div class="tag">SaaS platform</div>
+          <h3>Tradefix</h3>
+          <p>An online sale and purchase management system built for teams who need their trading records accessible from anywhere — not tied to one machine or one branch.</p>
+          <ul class="case-features">
+            <li>Cloud-based, works from any device with a browser</li>
+            <li>Sale and purchase entries with running balances</li>
+            <li>Built for teams — multiple users, one source of truth</li>
+          </ul>
+          <a href="#contact" class="case-link">Talk through your workflow</a>
+        </div>
+      </div>
+
+      <!-- Case 4: Clicklo POS (Desktop, Offline) -->
+      <div class="case reveal">
+        <div class="case-media">
+          <!-- IMAGE SLOT: images/clicklo-pos-thumb.jpg -->
+          <div class="ph"><b>Clicklo POS</b>Screenshot / mockup goes here</div>
+        </div>
+        <div class="case-body">
+          <div class="tag">Desktop app</div>
+          <h3>Clicklo POS</h3>
+          <p>A real installable point-of-sale system for retail businesses — no browser tab, no internet dependency. Built to keep working during a power flicker or a dropped connection.</p>
+          <ul class="case-features">
+            <li>Stock, invoicing, and profit/loss reporting with filters</li>
+            <li>Branded customer receipts, printer settings built in</li>
+            <li>Daily, weekly and monthly ledger closing</li>
+            <li>One-click backup — data stays on the shop's own machine</li>
+          </ul>
+          <a href="#contact" class="case-link">Get this for your shop</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="tag reveal">Available for new projects</div>
+      <h2 class="reveal">Got something to build? Let's talk.</h2>
+      <div class="contact-row reveal">
+        <div class="contact-links">
+          <a href="mailto:aftab@clicklo.pk">aftab@clicklo.pk</a>
+          <a href="tel:+923409264574">+92 340 926 45 74</a>
+        </div>
+        <div class="contact-social">
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="#" target="_blank" rel="noopener">Facebook</a>
+          <a href="#" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>© <span id="year"></span> Clicklo. Built and maintained by Aftab.</span>
+  <span>Islamabad, Pakistan</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- custom cursor ---------- */
+  if (window.matchMedia('(hover:hover)').matches) {
+    var dot = document.querySelector('.cursor');
+    var ring = document.querySelector('.cursor-ring');
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    window.addEventListener('mousemove', function(e){
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    (function loop(){
+      rx += (mx - rx) * 0.15; ry += (my - ry) * 0.15;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a, .btn, .proj-card, .chip').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ ring.classList.add('hover'); });
+      el.addEventListener('mouseleave', function(){ ring.classList.remove('hover'); });
+    });
+  }
+
+  /* ---------- hero parallax word (depth / 4D feel) ---------- */
+  var heroWord = document.getElementById('heroWord');
+  if (!reduceMotion) {
+    window.addEventListener('mousemove', function(e){
+      var px = (e.clientX / window.innerWidth - 0.5);
+      var py = (e.clientY / window.innerHeight - 0.5);
+      heroWord.style.transform = 'translate(-50%,-50%) translate(' + (px*40) + 'px,' + (py*20) + 'px) scale(1.02)';
+    });
+  }
+
+  /* ---------- scroll reveals + pinned hero word ---------- */
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray('.reveal').forEach(function(el, i){
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+        delay: (i % 4) * 0.05
+      });
+    });
+
+    gsap.to('#heroWord', {
+      scale: 1.6, opacity: 0.35, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    gsap.utils.toArray('.proj-card, .case-media').forEach(function(card){
+      gsap.fromTo(card, { y: 30 }, {
+        y: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 90%' }
+      });
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.style.opacity = 1; el.style.transform = 'none'; });
+  }
+
+  /* ---------- tilt on clicklo mark ---------- */
+  var mark = document.getElementById('clickloMark');
+  var visual = mark ? mark.parentElement : null;
+  if (visual && !reduceMotion) {
+    visual.addEventListener('mousemove', function(e){
+      var r = visual.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width - 0.5;
+      var py = (e.clientY - r.top) / r.height - 0.5;
+      mark.style.transform = 'rotateY(' + (px*24) + 'deg) rotateX(' + (py*-24) + 'deg)';
+    });
+    visual.addEventListener('mouseleave', function(){ mark.style.transform = 'rotateY(0) rotateX(0)'; });
+  }
+</script>
+
+</body>
+</html>
