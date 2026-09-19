@@ -5,14 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aftab — Clicklo | Software Developer &amp; Founder</title>
 <meta name="description" content="Aftab builds software businesses run on — booking plugins, point-of-sale systems, and trade platforms, under the Clicklo brand." />
-
-<!--
-  ============================================================
-  IMAGE SLOTS — drop your files into /images/ with these exact
-  names and everything will pick them up automatically.
-  See README.md for the full list + recommended sizes.
-  ============================================================
--->
+<link rel="icon" type="image/png" href="images/clicklo-mark.png">
+<link rel="apple-touch-icon" href="images/clicklo-mark.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,8 +18,8 @@
     --bg-alt: #0e1425;
     --surface: #121a2f;
     --line: rgba(242,244,250,0.09);
-    --blue: #3e6bff;
-    --blue-dim: rgba(62,107,255,0.16);
+    --blue: #2b3bff;
+    --blue-dim: rgba(43,59,255,0.18);
     --amber: #ffb020;
     --text: #f2f4fa;
     --text-dim: #8a91ac;
@@ -70,10 +64,12 @@
   nav{
     position:fixed; top:0; left:0; right:0; z-index:500;
     display:flex; align-items:center; justify-content:space-between;
-    padding:28px 6vw; mix-blend-mode:difference;
+    padding:20px 6vw;
+    background:linear-gradient(rgba(9,12,20,0.85), rgba(9,12,20,0));
   }
-  .brandmark{ display:flex; align-items:center; gap:10px; font-family:'Sora'; font-weight:700; font-size:1.05rem; }
-  .brandmark .dot{ width:9px; height:9px; border-radius:2px; background:var(--blue); display:inline-block; }
+  .brandmark{ display:flex; align-items:center; }
+  .brandmark img{ height:22px; width:auto; display:block; }
+  .brandmark-pill{ background:#fff; border-radius:6px; padding:8px 12px; display:flex; align-items:center; }
   .navlinks{ display:flex; gap:36px; font-size:0.92rem; color:var(--text-dim); }
   .navlinks a{ position:relative; padding-bottom:3px; }
   .navlinks a::after{ content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--text); transition:width .3s var(--ease); }
@@ -142,10 +138,20 @@
   }
 
   /* ---------- about ---------- */
-  .about-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:80px; align-items:start; }
+  .about-grid{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start; }
+  .about-portrait{
+    position:relative; border-radius:8px; overflow:hidden; aspect-ratio:3/4; border:1px solid var(--line);
+    background:var(--surface);
+  }
+  .about-portrait img{ width:100%; height:100%; object-fit:cover; object-position:top center; filter:grayscale(0.15); }
+  .about-portrait::after{
+    content:''; position:absolute; inset:0; background:linear-gradient(200deg, transparent 55%, rgba(9,12,20,0.55));
+  }
+  .about-portrait .cap{ position:absolute; left:18px; bottom:16px; font-size:0.82rem; color:var(--text-dim); z-index:2; }
+  .about-portrait .cap b{ color:var(--text); font-family:'Sora'; display:block; font-size:0.95rem; }
   .about-grid p{ color:var(--text-dim); font-size:1.08rem; margin-bottom:20px; max-width:52ch; }
   .about-grid p strong{ color:var(--text); font-weight:600; }
-  .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
   .chip{
     font-size:0.85rem; padding:10px 16px; border:1px solid var(--line); border-radius:var(--radius);
     color:var(--text-dim); transition:border-color .3s, color .3s;
@@ -158,16 +164,15 @@
     display:grid; grid-template-columns:0.9fr 1.1fr; gap:0; border:1px solid var(--line); border-radius:8px; overflow:hidden;
   }
   .clicklo-visual{
-    background:linear-gradient(160deg, var(--surface), var(--bg-alt));
+    background:linear-gradient(160deg, #eef0f6, #dfe3ee);
     display:flex; align-items:center; justify-content:center; padding:60px; position:relative; min-height:340px;
     perspective:900px;
   }
   .clicklo-mark{
-    width:150px; height:150px; border-radius:32px; background:linear-gradient(150deg, var(--blue), #1c2a5e);
-    display:flex; align-items:center; justify-content:center; transform-style:preserve-3d;
-    box-shadow:0 40px 80px -30px rgba(62,107,255,0.45);
+    display:flex; flex-direction:column; align-items:center; gap:22px; transform-style:preserve-3d;
   }
-  .clicklo-mark svg{ width:64px; height:64px; }
+  .clicklo-mark img.mark-icon{ width:110px; height:110px; filter:drop-shadow(0 30px 50px rgba(43,59,255,0.35)); }
+  .clicklo-mark img.mark-word{ height:30px; width:auto; }
   .clicklo-copy{ padding:64px; display:flex; flex-direction:column; justify-content:center; }
   .clicklo-copy h3{ font-size:1.9rem; margin-bottom:18px; }
   .clicklo-copy p{ color:var(--text-dim); margin-bottom:16px; max-width:48ch; }
@@ -207,26 +212,41 @@
     .case, .case:nth-child(even){ grid-template-columns:1fr; direction:ltr; gap:32px; padding:48px 0; }
   }
 
-  /* projects gallery (websites) */
-  .proj-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:24px; }
-  .proj-card{
-    aspect-ratio:16/11; border-radius:8px; overflow:hidden; border:1px solid var(--line); position:relative;
-    background:var(--surface);
+  /* project index (websites) */
+  .proj-index{ display:flex; flex-direction:column; border-top:1px solid var(--line); margin-bottom:120px; }
+  .proj-row{
+    display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;
+    padding:34px 0; border-bottom:1px solid var(--line); transition:padding-left .35s var(--ease);
   }
-  .proj-card .ph{
-    position:absolute; inset:0; display:flex; align-items:flex-end; padding:20px;
-    background:linear-gradient(160deg, var(--surface), var(--bg-alt));
-    color:var(--text-faint); font-size:0.8rem;
+  .proj-row:hover{ padding-left:14px; }
+  .proj-row-title{
+    font-family:'Sora'; font-weight:600; font-size:clamp(1.15rem, 2vw, 1.5rem); display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+    transition:color .3s;
   }
-  .proj-card img{ width:100%; height:100%; object-fit:cover; }
-  .proj-card .label{ position:absolute; left:20px; bottom:18px; font-family:'Sora'; font-weight:600; color:var(--text-dim); font-size:0.9rem; z-index:2; }
-  @media (max-width:720px){ .proj-grid{ grid-template-columns:1fr; } }
+  .proj-row:hover .proj-row-title{ color:var(--blue); }
+  .proj-row-tag{ font-size:0.72rem; color:var(--text-faint); border:1px solid var(--line); padding:5px 10px; border-radius:4px; font-family:'IBM Plex Sans'; font-weight:500; }
+  .proj-row-desc{ color:var(--text-dim); font-size:0.92rem; max-width:58ch; margin-top:10px; }
+  .proj-row-sub{ font-size:0.82rem; color:var(--text-faint); margin-top:8px; }
+  .proj-row-sub a{ color:var(--text-dim); border-bottom:1px solid var(--line); padding-bottom:1px; }
+  .proj-row-sub a:hover{ color:var(--text); }
+  .proj-row-link{ font-size:0.85rem; color:var(--text-dim); white-space:nowrap; }
+  .proj-row:hover .proj-row-link{ color:var(--text); }
+  @media (max-width:720px){
+    .proj-row{ grid-template-columns:1fr; gap:10px; }
+    .proj-row-link{ font-size:0.8rem; }
+  }
 
   /* ---------- contact / CTA ---------- */
   .contact{ text-align:left; }
+  .contact-top{ display:grid; grid-template-columns:1.3fr 0.7fr; gap:60px; align-items:end; margin-bottom:40px; }
   .contact h2{
-    font-size:clamp(2.4rem, 7vw, 5.6rem); line-height:1.02; margin-bottom:40px; max-width:14ch;
+    font-size:clamp(2.4rem, 6.4vw, 5.2rem); line-height:1.02; max-width:14ch;
   }
+  .contact-photo{
+    aspect-ratio:3/4; border-radius:8px; overflow:hidden; border:1px solid var(--line); position:relative;
+  }
+  .contact-photo img{ width:100%; height:100%; object-fit:cover; object-position:top center; }
+  @media (max-width:860px){ .contact-top{ grid-template-columns:1fr; } .contact-photo{ max-width:260px; } }
   .contact-row{ display:flex; justify-content:space-between; align-items:flex-end; gap:40px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:40px; }
   .contact-links{ display:flex; flex-direction:column; gap:14px; }
   .contact-links a{ font-size:1.4rem; font-family:'Sora'; font-weight:600; }
@@ -246,7 +266,7 @@
 <div class="cursor-ring"></div>
 
 <nav>
-  <div class="brandmark"><span class="dot"></span>Clicklo</div>
+  <a href="#" class="brandmark"><span class="brandmark-pill"><img src="images/clicklo-wordmark.png" alt="Clicklo"></span></a>
   <div class="navlinks">
     <a href="#about">About</a>
     <a href="#work">Work</a>
@@ -290,12 +310,14 @@
         <p class="sub reveal">From first sketch to a client using it daily — I own the full lifecycle.</p>
       </div>
       <div class="about-grid">
+        <div class="about-portrait reveal">
+          <img src="images/aftab-portrait.jpg" alt="Aftab, founder of Clicklo">
+          <div class="cap"><b>Aftab</b>Developer &amp; founder, Clicklo</div>
+        </div>
         <div>
           <p class="reveal">I started as a developer and grew into running <strong>Clicklo</strong>, a software company building tools for real businesses — travel agencies, retail shops, and traders. That means every project I take on gets planned, built, tested and supported by the same person who understands why it exists.</p>
           <p class="reveal">I split my time between hands-on development and the less glamorous parts that actually decide whether software survives contact with real users: scoping the right features, managing timelines, and staying close to feedback after launch.</p>
-        </div>
-        <div class="reveal">
-          <div class="chips">
+          <div class="chips reveal">
             <span class="chip">Full-stack development</span>
             <span class="chip">Product planning</span>
             <span class="chip">System architecture</span>
@@ -315,13 +337,9 @@
     <div class="wrap">
       <div class="clicklo-panel reveal">
         <div class="clicklo-visual">
-          <!--
-            IMAGE SLOT (optional): replace the SVG mark below with
-            <img src="images/clicklo-logo.png" alt="Clicklo logo">
-            Use the 1024x1024 icon you already created for Clicklo POS.
-          -->
           <div class="clicklo-mark" id="clickloMark">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M4 3L20 10.5L12.8 12.8L10.5 20L4 3Z" fill="#fff"/></svg>
+            <img class="mark-icon" src="images/clicklo-mark.png" alt="">
+            <img class="mark-word" src="images/clicklo-wordmark-tagline.png" alt="Clicklo — We Design, We Create">
           </div>
         </div>
         <div class="clicklo-copy">
@@ -331,7 +349,7 @@
           <p>If you're hiring for a project rather than a person, this is who you'd be working with.</p>
           <div class="clicklo-links">
             <a href="mailto:aftab@clicklo.pk">aftab@clicklo.pk</a>
-            <a href="#" target="_blank" rel="noopener">/clicklo on socials</a>
+            <a href="https://www.linkedin.com/in/itaftabiqbal" target="_blank" rel="noopener">Connect on LinkedIn</a>
           </div>
         </div>
       </div>
@@ -346,31 +364,69 @@
         <p class="sub reveal">Four kinds of software, one build philosophy.</p>
       </div>
 
-      <!-- Case 1: Websites / Projects -->
-      <div class="case reveal">
-        <div class="case-media">
-          <div class="ph">
-            <b>Project gallery</b>
-            <!-- IMAGE SLOTS: images/project-1.jpg … project-4.jpg (see proj-grid below) -->
-            Website thumbnails go in the grid on the right →
+      <!-- Websites / client projects (Firm11) -->
+      <div class="tag reveal">Websites</div>
+      <p class="sub reveal" style="margin-bottom:32px; max-width:60ch;">Client sites built through Firm11 — custom features, business builds, and WordPress customization.</p>
+      <div class="proj-index reveal">
+
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">Hyundai Sargodha <span class="proj-row-tag">Automotive</span></div>
+            <p class="proj-row-desc">Automotive dealership site with a custom price calculator that lets buyers work through pricing interactively instead of calling in.</p>
+            <div class="proj-row-sub">Custom feature: <a href="https://hyundaisargodha.com/price-calculator" target="_blank" rel="noopener">Price calculator →</a></div>
           </div>
+          <a class="proj-row-link" href="https://hyundaisargodha.com" target="_blank" rel="noopener">hyundaisargodha.com</a>
         </div>
-        <div class="case-body">
-          <div class="proj-grid">
-            <div class="proj-card"><div class="ph">Project 1</div><div class="label">Website</div>
-              <!-- <img src="images/project-1.jpg" alt="Project 1"> -->
-            </div>
-            <div class="proj-card"><div class="ph">Project 2</div><div class="label">Website</div>
-              <!-- <img src="images/project-2.jpg" alt="Project 2"> -->
-            </div>
-            <div class="proj-card"><div class="ph">Project 3</div><div class="label">Website</div>
-              <!-- <img src="images/project-3.jpg" alt="Project 3"> -->
-            </div>
-            <div class="proj-card"><div class="ph">Project 4</div><div class="label">Website</div>
-              <!-- <img src="images/project-4.jpg" alt="Project 4"> -->
-            </div>
+
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">ECOS IT <span class="proj-row-tag">IT &amp; hardware</span></div>
+            <p class="proj-row-desc">WordPress business site for an IT hardware company — stock-focused sections, service content, and a lead-oriented page structure.</p>
           </div>
+          <a class="proj-row-link" href="https://ecos-it.com" target="_blank" rel="noopener">ecos-it.com</a>
         </div>
+
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">Pakistan Teachers Forum <span class="proj-row-tag">Organization</span></div>
+            <p class="proj-row-desc">Structured organization site handling news and events, contact flows, and a large amount of ongoing content.</p>
+          </div>
+          <a class="proj-row-link" href="https://ptf2019.pk" target="_blank" rel="noopener">ptf2019.pk</a>
+        </div>
+
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">Tanzeela Mariam <span class="proj-row-tag">Coaching</span></div>
+            <p class="proj-row-desc">Coaching website built around conversion — service pages, testimonials, FAQs, and a clear path to booking a consultation call.</p>
+          </div>
+          <a class="proj-row-link" href="http://tanzeelamariam.com" target="_blank" rel="noopener">tanzeelamariam.com</a>
+        </div>
+
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">Medica International <span class="proj-row-tag">Medical</span></div>
+            <p class="proj-row-desc">Category-driven site for an international medical products business, with service pages built for an outward-facing audience.</p>
+          </div>
+          <a class="proj-row-link" href="http://medicaint.com" target="_blank" rel="noopener">medicaint.com</a>
+        </div>
+
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">Rich From Gems <span class="proj-row-tag">Ecommerce</span></div>
+            <p class="proj-row-desc">Ecommerce WordPress store with product listings, category pages, promotional sections, and a full shopping flow.</p>
+          </div>
+          <a class="proj-row-link" href="https://richfromgems.com" target="_blank" rel="noopener">richfromgems.com</a>
+        </div>
+
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">Jaecoo <span class="proj-row-tag">Automotive · in progress</span></div>
+            <p class="proj-row-desc">Automotive build centered on a multi-step booking flow — brand, variant, colour, interior, pricing, freight, and personal details.</p>
+            <div class="proj-row-sub">Custom feature: <a href="http://jaecoo.firmeleven.com/booking" target="_blank" rel="noopener">Booking form →</a></div>
+          </div>
+          <a class="proj-row-link" href="http://jaecoo.firmeleven.com" target="_blank" rel="noopener">jaecoo.firmeleven.com</a>
+        </div>
+
       </div>
 
       <!-- Case 2: Umrah Designer (Plugin) -->
@@ -438,15 +494,22 @@
   <!-- ============ CONTACT ============ -->
   <section id="contact" class="contact">
     <div class="wrap">
-      <div class="tag reveal">Available for new projects</div>
-      <h2 class="reveal">Got something to build? Let's talk.</h2>
+      <div class="contact-top">
+        <div>
+          <div class="tag reveal">Available for new projects</div>
+          <h2 class="reveal">Got something to build? Let's talk.</h2>
+        </div>
+        <div class="contact-photo reveal">
+          <img src="images/aftab-creative.jpg" alt="Aftab">
+        </div>
+      </div>
       <div class="contact-row reveal">
         <div class="contact-links">
           <a href="mailto:aftab@clicklo.pk">aftab@clicklo.pk</a>
           <a href="tel:+923409264574">+92 340 926 45 74</a>
         </div>
         <div class="contact-social">
-          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/itaftabiqbal" target="_blank" rel="noopener">LinkedIn</a>
           <a href="#" target="_blank" rel="noopener">Facebook</a>
           <a href="#" target="_blank" rel="noopener">Instagram</a>
         </div>
@@ -482,7 +545,7 @@
       ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
       requestAnimationFrame(loop);
     })();
-    document.querySelectorAll('a, .btn, .proj-card, .chip').forEach(function(el){
+    document.querySelectorAll('a, .btn, .proj-row, .chip').forEach(function(el){
       el.addEventListener('mouseenter', function(){ ring.classList.add('hover'); });
       el.addEventListener('mouseleave', function(){ ring.classList.remove('hover'); });
     });
@@ -515,7 +578,7 @@
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
     });
 
-    gsap.utils.toArray('.proj-card, .case-media').forEach(function(card){
+    gsap.utils.toArray('.proj-row, .case-media, .about-portrait, .contact-photo').forEach(function(card){
       gsap.fromTo(card, { y: 30 }, {
         y: 0, duration: 1, ease: 'power3.out',
         scrollTrigger: { trigger: card, start: 'top 90%' }
