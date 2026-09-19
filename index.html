@@ -89,11 +89,25 @@
     white-space:nowrap; pointer-events:none; user-select:none; z-index:0;
     will-change:transform;
   }
+  .hero-photo{
+    position:absolute; right:0; top:0; bottom:0; width:40%; z-index:1;
+    -webkit-mask-image:linear-gradient(to right, transparent, black 30%, black 92%, transparent);
+    mask-image:linear-gradient(to right, transparent, black 30%, black 92%, transparent);
+  }
+  .hero-photo img{
+    width:100%; height:100%; object-fit:cover; object-position:top center;
+    filter:grayscale(0.5) contrast(1.08) brightness(0.82);
+  }
+  .hero-photo::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(9,12,20,0.15), rgba(9,12,20,0.75) 78%, var(--bg));
+  }
+  @media (max-width:900px){ .hero-photo{ display:none; } }
   .hero-inner{ position:relative; z-index:2; }
   .eyebrow{ display:flex; align-items:center; gap:10px; color:var(--text-dim); font-size:0.95rem; margin-bottom:28px; }
   .eyebrow .bar{ width:28px; height:1px; background:var(--amber); }
   .hero h1{
-    font-size:clamp(2.6rem, 6.2vw, 5.4rem); line-height:1.03; max-width:16ch; margin-bottom:28px;
+    font-size:clamp(2.6rem, 5.6vw, 4.9rem); line-height:1.05; max-width:15ch; margin-bottom:28px;
   }
   .hero h1 .accent{ color:var(--blue); }
   .hero p.lede{ max-width:46ch; color:var(--text-dim); font-size:1.15rem; margin-bottom:44px; }
@@ -212,29 +226,52 @@
     .case, .case:nth-child(even){ grid-template-columns:1fr; direction:ltr; gap:32px; padding:48px 0; }
   }
 
-  /* project index (websites) */
-  .proj-index{ display:flex; flex-direction:column; border-top:1px solid var(--line); margin-bottom:120px; }
-  .proj-row{
-    display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;
-    padding:34px 0; border-bottom:1px solid var(--line); transition:padding-left .35s var(--ease);
+  /* website project flip-carousel */
+  .flip-section{ margin-bottom:60px; }
+  .flip-eyebrow{ margin-bottom:8px; }
+  .flip-stage{
+    position:relative; height:74vh; min-height:520px; max-height:720px;
+    display:flex; align-items:center; perspective:1700px;
   }
-  .proj-row:hover{ padding-left:14px; }
-  .proj-row-title{
-    font-family:'Sora'; font-weight:600; font-size:clamp(1.15rem, 2vw, 1.5rem); display:flex; align-items:center; gap:16px; flex-wrap:wrap;
-    transition:color .3s;
+  .flip-cards{ position:relative; width:100%; height:100%; }
+  .flip-card{
+    position:absolute; inset:0; display:flex; align-items:center;
+    backface-visibility:hidden; transform-style:preserve-3d; will-change:transform, opacity;
   }
-  .proj-row:hover .proj-row-title{ color:var(--blue); }
-  .proj-row-tag{ font-size:0.72rem; color:var(--text-faint); border:1px solid var(--line); padding:5px 10px; border-radius:4px; font-family:'IBM Plex Sans'; font-weight:500; }
-  .proj-row-desc{ color:var(--text-dim); font-size:0.92rem; max-width:58ch; margin-top:10px; }
-  .proj-row-sub{ font-size:0.82rem; color:var(--text-faint); margin-top:8px; }
-  .proj-row-sub a{ color:var(--text-dim); border-bottom:1px solid var(--line); padding-bottom:1px; }
-  .proj-row-sub a:hover{ color:var(--text); }
-  .proj-row-link{ font-size:0.85rem; color:var(--text-dim); white-space:nowrap; }
-  .proj-row:hover .proj-row-link{ color:var(--text); }
-  @media (max-width:720px){
-    .proj-row{ grid-template-columns:1fr; gap:10px; }
-    .proj-row-link{ font-size:0.8rem; }
+  .flip-card-inner{ max-width:660px; }
+  .flip-logo-badge{
+    display:inline-flex; align-items:center; background:#fff; padding:10px 18px; border-radius:6px; margin-bottom:30px;
   }
+  .flip-logo-badge img{ height:24px; width:auto; display:block; }
+  .flip-card-tag{
+    display:inline-block; font-size:0.78rem; color:var(--text-dim); border:1px solid var(--line);
+    padding:6px 12px; border-radius:var(--radius); margin-bottom:20px;
+  }
+  .flip-card-title{ font-family:'Sora'; font-weight:700; font-size:clamp(2rem, 4.2vw, 3.4rem); line-height:1.05; margin-bottom:22px; max-width:14ch; letter-spacing:-0.02em; }
+  .flip-card-desc{ color:var(--text-dim); font-size:1.05rem; max-width:54ch; margin-bottom:30px; }
+  .flip-card-links{ display:flex; gap:28px; flex-wrap:wrap; font-size:0.92rem; }
+  .flip-card-links a{ border-bottom:1px solid var(--line); padding-bottom:3px; color:var(--text); transition:color .3s, border-color .3s; }
+  .flip-card-links a:hover{ color:var(--blue); border-color:var(--blue); }
+  .flip-progress{
+    position:absolute; right:0; top:0; z-index:5; display:flex; align-items:baseline; gap:6px;
+    font-family:'Sora'; color:var(--text-faint);
+  }
+  .flip-progress .cur{ font-size:1.1rem; color:var(--text); font-weight:600; }
+  .flip-progress .tot{ font-size:0.85rem; }
+  .flip-track{ position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--line); }
+  .flip-track-fill{ height:100%; width:0%; background:var(--blue); }
+  .flip-hint{ position:absolute; left:0; bottom:16px; font-size:0.78rem; color:var(--text-faint); }
+  @media (max-width:860px){
+    .flip-stage{ height:auto; min-height:560px; padding:8px 0 40px; }
+    .flip-card-title{ max-width:none; }
+  }
+  .flip-stage.no-pin{ height:auto; min-height:0; display:block; }
+  .flip-stage.no-pin .flip-cards{ height:auto; }
+  .flip-stage.no-pin .flip-card{
+    position:relative; inset:auto; opacity:1 !important; transform:none !important;
+    padding:56px 0; border-bottom:1px solid var(--line);
+  }
+  .flip-stage.no-pin .flip-track, .flip-stage.no-pin .flip-progress, .flip-stage.no-pin .flip-hint{ display:none; }
 
   /* ---------- contact / CTA ---------- */
   .contact{ text-align:left; }
@@ -280,10 +317,11 @@
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="hero-word" id="heroWord">CLICKLO</div>
+    <div class="hero-photo"><img src="aftab-hero.jpg" alt="Aftab, founder of Clicklo"></div>
     <div class="hero-inner wrap" style="padding:0; max-width:100%;">
       <div class="eyebrow"><span class="bar"></span>Software developer &amp; founder</div>
-      <h1 class="reveal" id="heroTitle">I build the software <span class="accent">businesses run on.</span></h1>
-      <p class="lede reveal">Aftab — I design, build and ship products end to end: booking systems, point-of-sale software, trade platforms, and the websites that sell them. Based in Pakistan, working with teams everywhere.</p>
+      <h1 class="reveal" id="heroTitle">One developer. Four kinds of software. <span class="accent">Zero handoffs.</span></h1>
+      <p class="lede reveal">Aftab — from first sketch to a client using it daily, I own delivery end to end: web builds, booking plugins, trade platforms, and the desktop POS software that keeps a shop running. Based in Pakistan, working with teams everywhere.</p>
       <div class="hero-ctas reveal">
         <a href="#work" class="btn btn-solid">See the work</a>
         <a href="#contact" class="btn btn-line">Start a project</a>
@@ -364,76 +402,102 @@
         <p class="sub reveal">Four kinds of software, one build philosophy.</p>
       </div>
 
-      <!-- Websites / client projects (Firm11) -->
-      <div class="tag reveal">Websites</div>
-      <p class="sub reveal" style="margin-bottom:32px; max-width:60ch;">Client sites built through Firm11 — custom features, business builds, and WordPress customization.</p>
-      <div class="proj-index reveal">
-
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">Hyundai Sargodha <span class="proj-row-tag">Automotive</span></div>
-            <p class="proj-row-desc">Automotive dealership site with a custom price calculator that lets buyers work through pricing interactively instead of calling in.</p>
-            <div class="proj-row-sub">Custom feature: <a href="https://hyundaisargodha.com/price-calculator" target="_blank" rel="noopener">Price calculator →</a></div>
-          </div>
-          <a class="proj-row-link" href="https://hyundaisargodha.com" target="_blank" rel="noopener">hyundaisargodha.com</a>
+      <!-- Websites / client projects (Firm11) — scroll-driven flip carousel -->
+      <div class="flip-section" id="flipSection">
+        <div class="flip-eyebrow">
+          <div class="tag reveal">Websites</div>
+          <p class="sub reveal" style="margin-bottom:0; max-width:60ch;">Client sites built through Firm11 — keep scrolling, each one flips into the next.</p>
         </div>
 
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">ECOS IT <span class="proj-row-tag">IT &amp; hardware</span></div>
-            <p class="proj-row-desc">WordPress business site for an IT hardware company — stock-focused sections, service content, and a lead-oriented page structure.</p>
-          </div>
-          <a class="proj-row-link" href="https://ecos-it.com" target="_blank" rel="noopener">ecos-it.com</a>
-        </div>
+        <div class="flip-stage" id="flipStage">
+          <div class="flip-progress"><span class="cur">01</span><span class="tot">/ 06</span></div>
 
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">Pakistan Teachers Forum <span class="proj-row-tag">Organization</span></div>
-            <p class="proj-row-desc">Structured organization site handling news and events, contact flows, and a large amount of ongoing content.</p>
-          </div>
-          <a class="proj-row-link" href="https://ptf2019.pk" target="_blank" rel="noopener">ptf2019.pk</a>
-        </div>
+          <div class="flip-cards">
 
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">Tanzeela Mariam <span class="proj-row-tag">Coaching</span></div>
-            <p class="proj-row-desc">Coaching website built around conversion — service pages, testimonials, FAQs, and a clear path to booking a consultation call.</p>
-          </div>
-          <a class="proj-row-link" href="http://tanzeelamariam.com" target="_blank" rel="noopener">tanzeelamariam.com</a>
-        </div>
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <span class="flip-logo-badge"><img src="hyundai-logo.png" alt="Hyundai Sargodha"></span>
+                <div class="flip-card-tag">Automotive</div>
+                <h3 class="flip-card-title">Hyundai Sargodha</h3>
+                <p class="flip-card-desc">Automotive dealership site with a custom price calculator that lets buyers work through pricing interactively instead of calling in.</p>
+                <div class="flip-card-links">
+                  <a href="https://hyundaisargodha.com" target="_blank" rel="noopener">hyundaisargodha.com</a>
+                  <a href="https://hyundaisargodha.com/price-calculator" target="_blank" rel="noopener">Price calculator →</a>
+                </div>
+              </div>
+            </div>
 
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">Medica International <span class="proj-row-tag">Medical</span></div>
-            <p class="proj-row-desc">Category-driven site for an international medical products business, with service pages built for an outward-facing audience.</p>
-          </div>
-          <a class="proj-row-link" href="http://medicaint.com" target="_blank" rel="noopener">medicaint.com</a>
-        </div>
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <span class="flip-logo-badge"><img src="ecos-logo.png" alt="ECOS IT"></span>
+                <div class="flip-card-tag">IT &amp; hardware</div>
+                <h3 class="flip-card-title">ECOS IT</h3>
+                <p class="flip-card-desc">WordPress business site for an IT hardware company — stock-focused sections, service content, and a lead-oriented page structure.</p>
+                <div class="flip-card-links">
+                  <a href="https://ecos-it.com" target="_blank" rel="noopener">ecos-it.com</a>
+                </div>
+              </div>
+            </div>
 
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">Rich From Gems <span class="proj-row-tag">Ecommerce</span></div>
-            <p class="proj-row-desc">Ecommerce WordPress store with product listings, category pages, promotional sections, and a full shopping flow.</p>
-          </div>
-          <a class="proj-row-link" href="https://richfromgems.com" target="_blank" rel="noopener">richfromgems.com</a>
-        </div>
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <span class="flip-logo-badge"><img src="ptf-logo.png" alt="Pakistan Teachers Forum"></span>
+                <div class="flip-card-tag">Organization</div>
+                <h3 class="flip-card-title">Pakistan Teachers Forum</h3>
+                <p class="flip-card-desc">Structured organization site handling news and events, contact flows, and a large amount of ongoing content.</p>
+                <div class="flip-card-links">
+                  <a href="https://ptf2019.pk" target="_blank" rel="noopener">ptf2019.pk</a>
+                </div>
+              </div>
+            </div>
 
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">Jaecoo <span class="proj-row-tag">Automotive · in progress</span></div>
-            <p class="proj-row-desc">Automotive build centered on a multi-step booking flow — brand, variant, colour, interior, pricing, freight, and personal details.</p>
-            <div class="proj-row-sub">Custom feature: <a href="http://jaecoo.firmeleven.com/booking" target="_blank" rel="noopener">Booking form →</a></div>
-          </div>
-          <a class="proj-row-link" href="http://jaecoo.firmeleven.com" target="_blank" rel="noopener">jaecoo.firmeleven.com</a>
-        </div>
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-tag">Medical</div>
+                <h3 class="flip-card-title">Medica International</h3>
+                <p class="flip-card-desc">Category-driven site for an international medical products business, with service pages built for an outward-facing audience.</p>
+                <div class="flip-card-links">
+                  <a href="http://medicaint.com" target="_blank" rel="noopener">medicaint.com</a>
+                </div>
+              </div>
+            </div>
 
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <span class="flip-logo-badge"><img src="richgems-logo.png" alt="Rich From Gems"></span>
+                <div class="flip-card-tag">Ecommerce</div>
+                <h3 class="flip-card-title">Rich From Gems</h3>
+                <p class="flip-card-desc">Ecommerce WordPress store with product listings, category pages, promotional sections, and a full shopping flow.</p>
+                <div class="flip-card-links">
+                  <a href="https://richfromgems.com" target="_blank" rel="noopener">richfromgems.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <span class="flip-logo-badge"><img src="jaecoo-logo.png" alt="Omoda | Jaecoo"></span>
+                <div class="flip-card-tag">Automotive · in progress</div>
+                <h3 class="flip-card-title">Jaecoo</h3>
+                <p class="flip-card-desc">Automotive build centered on a multi-step booking flow — brand, variant, colour, interior, pricing, freight, and personal details.</p>
+                <div class="flip-card-links">
+                  <a href="http://jaecoo.firmeleven.com" target="_blank" rel="noopener">jaecoo.firmeleven.com</a>
+                  <a href="http://jaecoo.firmeleven.com/booking" target="_blank" rel="noopener">Booking form →</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="flip-hint">Scroll to flip through projects</div>
+          <div class="flip-track"><div class="flip-track-fill" id="flipTrackFill"></div></div>
+        </div>
       </div>
 
       <!-- Case 2: Umrah Designer (Plugin) -->
       <div class="case reveal">
-        <div class="case-media">
-          <!-- IMAGE SLOT: umrah-designer-thumb.jpg -->
-          <div class="ph"><b>Umrah Designer</b>Screenshot / mockup goes here</div>
+        <div class="case-media" style="aspect-ratio:1/1;">
+          <img src="umrah-designer-thumb.jpg" alt="Umrah Designer plugin — package builder mockup">
         </div>
         <div class="case-body">
           <div class="tag">Plugin</div>
@@ -470,9 +534,8 @@
 
       <!-- Case 4: Clicklo POS (Desktop, Offline) -->
       <div class="case reveal">
-        <div class="case-media">
-          <!-- IMAGE SLOT: clicklo-pos-thumb.jpg -->
-          <div class="ph"><b>Clicklo POS</b>Screenshot / mockup goes here</div>
+        <div class="case-media" style="aspect-ratio:16/9;">
+          <img src="clicklo-pos-thumb.jpg" alt="Clicklo POS dashboard">
         </div>
         <div class="case-body">
           <div class="tag">Desktop app</div>
@@ -545,7 +608,7 @@
       ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
       requestAnimationFrame(loop);
     })();
-    document.querySelectorAll('a, .btn, .proj-row, .chip').forEach(function(el){
+    document.querySelectorAll('a, .btn, .flip-card-links a, .chip').forEach(function(el){
       el.addEventListener('mouseenter', function(){ ring.classList.add('hover'); });
       el.addEventListener('mouseleave', function(){ ring.classList.remove('hover'); });
     });
@@ -578,7 +641,7 @@
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
     });
 
-    gsap.utils.toArray('.proj-row, .case-media, .about-portrait, .contact-photo').forEach(function(card){
+    gsap.utils.toArray('.case-media, .about-portrait, .contact-photo').forEach(function(card){
       gsap.fromTo(card, { y: 30 }, {
         y: 0, duration: 1, ease: 'power3.out',
         scrollTrigger: { trigger: card, start: 'top 90%' }
@@ -587,6 +650,46 @@
   } else {
     document.querySelectorAll('.reveal').forEach(function(el){ el.style.opacity = 1; el.style.transform = 'none'; });
   }
+
+  /* ---------- website projects: scroll-driven flip carousel ---------- */
+  (function(){
+    var stage = document.getElementById('flipStage');
+    if (!stage) return;
+    var cards = gsap.utils.toArray('.flip-card', stage);
+    var n = cards.length;
+    var curLabel = stage.querySelector('.flip-progress .cur');
+    var trackFill = document.getElementById('flipTrackFill');
+
+    if (reduceMotion || !window.gsap || !window.ScrollTrigger) {
+      stage.classList.add('no-pin');
+      return;
+    }
+
+    gsap.set(cards[0], { rotateY: 0, opacity: 1 });
+    for (var i = 1; i < n; i++) { gsap.set(cards[i], { rotateY: 90, opacity: 0 }); }
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: stage,
+        start: 'top top+=76',
+        end: function(){ return '+=' + (window.innerHeight * (n - 1)); },
+        scrub: 0.5,
+        pin: true,
+        anticipatePin: 1,
+        onUpdate: function(self){
+          var idx = Math.min(n - 1, Math.round(self.progress * (n - 1)));
+          if (curLabel) curLabel.textContent = String(idx + 1).padStart(2, '0');
+          if (trackFill) trackFill.style.width = (self.progress * 100) + '%';
+        }
+      },
+      defaults: { ease: 'power2.inOut', duration: 1 }
+    });
+
+    for (var j = 0; j < n - 1; j++) {
+      tl.to(cards[j], { rotateY: -90, opacity: 0 }, j);
+      tl.to(cards[j + 1], { rotateY: 0, opacity: 1 }, j);
+    }
+  })();
 
   /* ---------- tilt on clicklo mark ---------- */
   var mark = document.getElementById('clickloMark');
