@@ -68,8 +68,7 @@
     background:linear-gradient(rgba(9,12,20,0.85), rgba(9,12,20,0));
   }
   .brandmark{ display:flex; align-items:center; }
-  .brandmark img{ height:22px; width:auto; display:block; }
-  .brandmark-pill{ background:#fff; border-radius:6px; padding:8px 12px; display:flex; align-items:center; }
+  .brandmark img{ height:26px; width:auto; display:block; }
   .navlinks{ display:flex; gap:36px; font-size:0.92rem; color:var(--text-dim); }
   .navlinks a{ position:relative; padding-bottom:3px; }
   .navlinks a::after{ content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--text); transition:width .3s var(--ease); }
@@ -194,37 +193,6 @@
   .clicklo-links a:hover{ color:var(--text); }
   @media (max-width:860px){ .clicklo-panel{ grid-template-columns:1fr; } .clicklo-copy{ padding:40px 32px; } }
 
-  /* ---------- case studies ---------- */
-  .case{
-    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
-    padding:64px 0; border-bottom:1px solid var(--line);
-  }
-  .case:nth-child(even){ direction:rtl; }
-  .case:nth-child(even) > *{ direction:ltr; }
-  .case-media{
-    position:relative; aspect-ratio:4/3; border-radius:8px; overflow:hidden; border:1px solid var(--line);
-    background:var(--surface);
-  }
-  .case-media .ph{
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
-    color:var(--text-faint); font-size:0.82rem; text-align:center; padding:20px;
-    background:
-      radial-gradient(circle at 30% 20%, var(--blue-dim), transparent 55%),
-      linear-gradient(145deg, var(--surface), var(--bg-alt));
-  }
-  .case-media .ph b{ color:var(--text-dim); font-family:'Sora'; font-size:0.95rem; font-weight:600; }
-  .case-media img{ width:100%; height:100%; object-fit:cover; }
-  .case-body .tag{ margin-bottom:20px; }
-  .case-body h3{ font-size:clamp(1.6rem, 2.6vw, 2.2rem); margin-bottom:18px; max-width:16ch; }
-  .case-body p{ color:var(--text-dim); margin-bottom:24px; max-width:48ch; }
-  .case-features{ list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
-  .case-features li{ font-size:0.9rem; color:var(--text-dim); display:flex; gap:10px; align-items:flex-start; }
-  .case-features li::before{ content:''; width:4px; height:4px; border-radius:50%; background:var(--amber); margin-top:9px; flex-shrink:0; }
-  .case-link{ font-size:0.9rem; color:var(--text); border-bottom:1px solid var(--line); padding-bottom:3px; }
-  .case-link:hover{ border-color:var(--text); }
-  @media (max-width:860px){
-    .case, .case:nth-child(even){ grid-template-columns:1fr; direction:ltr; gap:32px; padding:48px 0; }
-  }
 
   /* website project flip-carousel */
   .flip-section{ margin-bottom:60px; }
@@ -240,9 +208,9 @@
   }
   .flip-card-inner{ max-width:660px; }
   .flip-logo-badge{
-    display:inline-flex; align-items:center; background:#fff; padding:10px 18px; border-radius:6px; margin-bottom:30px;
+    display:inline-flex; align-items:center; margin-bottom:30px; min-height:34px;
   }
-  .flip-logo-badge img{ height:24px; width:auto; display:block; }
+  .flip-logo-badge img{ height:32px; width:auto; display:block; max-width:220px; object-fit:contain; }
   .flip-card-tag{
     display:inline-block; font-size:0.78rem; color:var(--text-dim); border:1px solid var(--line);
     padding:6px 12px; border-radius:var(--radius); margin-bottom:20px;
@@ -262,16 +230,42 @@
   .flip-track-fill{ height:100%; width:0%; background:var(--blue); }
   .flip-hint{ position:absolute; left:0; bottom:16px; font-size:0.78rem; color:var(--text-faint); }
   @media (max-width:860px){
-    .flip-stage{ height:auto; min-height:560px; padding:8px 0 40px; }
     .flip-card-title{ max-width:none; }
   }
-  .flip-stage.no-pin{ height:auto; min-height:0; display:block; }
+  .flip-stage.no-pin{ height:auto; min-height:0; max-height:none; display:block; }
   .flip-stage.no-pin .flip-cards{ height:auto; }
   .flip-stage.no-pin .flip-card{
     position:relative; inset:auto; opacity:1 !important; transform:none !important;
     padding:56px 0; border-bottom:1px solid var(--line);
   }
   .flip-stage.no-pin .flip-track, .flip-stage.no-pin .flip-progress, .flip-stage.no-pin .flip-hint{ display:none; }
+
+  /* products carousel — split media + text variant */
+  .flip-stage--split{ height:min(760px, 82vh); min-height:560px; max-height:800px; }
+  .flip-card-split{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; width:100%; }
+  .flip-card-media{
+    position:relative; aspect-ratio:4/3; border-radius:8px; overflow:hidden; border:1px solid var(--line);
+    background:var(--surface);
+  }
+  .flip-card-media img{ width:100%; height:100%; object-fit:cover; }
+  .flip-card-media .ph{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+    color:var(--text-faint); font-size:0.82rem; text-align:center; padding:20px;
+    background:
+      radial-gradient(circle at 30% 20%, var(--blue-dim), transparent 55%),
+      linear-gradient(145deg, var(--surface), var(--bg-alt));
+  }
+  .flip-card-media .ph b{ color:var(--text-dim); font-family:'Sora'; font-size:0.95rem; font-weight:600; }
+  .flip-stage--split .flip-card-title{ font-size:clamp(1.6rem, 2.8vw, 2.3rem); max-width:none; margin-bottom:16px; }
+  .flip-stage--split .flip-card-desc{ font-size:0.98rem; margin-bottom:20px; }
+  .flip-card-cta-list{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:24px; }
+  .flip-card-cta-list li{ font-size:0.88rem; color:var(--text-dim); display:flex; gap:10px; align-items:flex-start; }
+  .flip-card-cta-list li::before{ content:''; width:4px; height:4px; border-radius:50%; background:var(--amber); margin-top:8px; flex-shrink:0; }
+  .flip-card-cta{ font-size:0.9rem; color:var(--text); border-bottom:1px solid var(--line); padding-bottom:3px; }
+  .flip-card-cta:hover{ color:var(--blue); border-color:var(--blue); }
+  @media (max-width:860px){
+    .flip-card-split{ grid-template-columns:1fr; gap:28px; }
+  }
 
   /* ---------- contact / CTA ---------- */
   .contact{ text-align:left; }
@@ -303,7 +297,7 @@
 <div class="cursor-ring"></div>
 
 <nav>
-  <a href="#" class="brandmark"><span class="brandmark-pill"><img src="clicklo-wordmark.png" alt="Clicklo"></span></a>
+  <a href="#" class="brandmark"><img src="clicklo-wordmark-white.png" alt="Clicklo"></a>
   <div class="navlinks">
     <a href="#about">About</a>
     <a href="#work">Work</a>
@@ -320,8 +314,8 @@
     <div class="hero-photo"><img src="aftab-hero.jpg" alt="Aftab, founder of Clicklo"></div>
     <div class="hero-inner wrap" style="padding:0; max-width:100%;">
       <div class="eyebrow"><span class="bar"></span>Software developer &amp; founder</div>
-      <h1 class="reveal" id="heroTitle">One developer. Four kinds of software. <span class="accent">Zero handoffs.</span></h1>
-      <p class="lede reveal">Aftab — from first sketch to a client using it daily, I own delivery end to end: web builds, booking plugins, trade platforms, and the desktop POS software that keeps a shop running. Based in Pakistan, working with teams everywhere.</p>
+      <h1 class="reveal" id="heroTitle">Aftab — who <span class="accent">ships</span>, not just codes.</h1>
+      <p class="lede reveal">From first sketch to a client using it daily, I own delivery end to end: web builds, booking plugins, trade platforms, and the desktop POS software that keeps a shop running. Based in Pakistan, working with teams everywhere.</p>
       <div class="hero-ctas reveal">
         <a href="#work" class="btn btn-solid">See the work</a>
         <a href="#contact" class="btn btn-line">Start a project</a>
@@ -344,7 +338,7 @@
   <section id="about">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="reveal">A developer who ships, not just codes.</h2>
+        <h2 class="reveal">The person who stays after launch.</h2>
         <p class="sub reveal">From first sketch to a client using it daily — I own the full lifecycle.</p>
       </div>
       <div class="about-grid">
@@ -406,7 +400,7 @@
       <div class="flip-section" id="flipSection">
         <div class="flip-eyebrow">
           <div class="tag reveal">Websites</div>
-          <p class="sub reveal" style="margin-bottom:0; max-width:60ch;">Client sites built through Firm11 — keep scrolling, each one flips into the next.</p>
+          <p class="sub reveal" style="margin-bottom:0; max-width:60ch;">Client sites built through Firm11 — scroll to explore.</p>
         </div>
 
         <div class="flip-stage" id="flipStage">
@@ -494,60 +488,79 @@
         </div>
       </div>
 
-      <!-- Case 2: Umrah Designer (Plugin) -->
-      <div class="case reveal">
-        <div class="case-media" style="aspect-ratio:1/1;">
-          <img src="umrah-designer-thumb.jpg" alt="Umrah Designer plugin — package builder mockup">
+      <!-- Products (Clicklo) — scroll-driven flip carousel -->
+      <div class="flip-section" id="productsSection" style="margin-top:80px;">
+        <div class="flip-eyebrow">
+          <div class="tag reveal">Products</div>
+          <p class="sub reveal" style="margin-bottom:0; max-width:60ch;">Software built and shipped under Clicklo — scroll to explore.</p>
         </div>
-        <div class="case-body">
-          <div class="tag">Plugin</div>
-          <h3>Umrah Designer</h3>
-          <p>A booking plugin that travel agencies embed directly into their own websites, turning a static enquiry form into a guided, app-like booking flow.</p>
-          <ul class="case-features">
-            <li>Visual, card-based package selection with a live price bar</li>
-            <li>Smart next-step suggestions based on what a customer already picked</li>
-            <li>Auto-generated PDF quote on submission</li>
-            <li>Full backend dashboard — agencies control pricing and fields themselves</li>
-          </ul>
-          <a href="#contact" class="case-link">Ask about this for your agency</a>
-        </div>
-      </div>
 
-      <!-- Case 3: Tradefix (Sale/Purchase, Online) -->
-      <div class="case reveal">
-        <div class="case-media">
-          <!-- IMAGE SLOT: tradefix-thumb.jpg -->
-          <div class="ph"><b>Tradefix</b>Screenshot / mockup goes here</div>
-        </div>
-        <div class="case-body">
-          <div class="tag">SaaS platform</div>
-          <h3>Tradefix</h3>
-          <p>An online sale and purchase management system built for teams who need their trading records accessible from anywhere — not tied to one machine or one branch.</p>
-          <ul class="case-features">
-            <li>Cloud-based, works from any device with a browser</li>
-            <li>Sale and purchase entries with running balances</li>
-            <li>Built for teams — multiple users, one source of truth</li>
-          </ul>
-          <a href="#contact" class="case-link">Talk through your workflow</a>
-        </div>
-      </div>
+        <div class="flip-stage flip-stage--split" id="productsStage">
+          <div class="flip-progress"><span class="cur">01</span><span class="tot">/ 03</span></div>
 
-      <!-- Case 4: Clicklo POS (Desktop, Offline) -->
-      <div class="case reveal">
-        <div class="case-media" style="aspect-ratio:16/9;">
-          <img src="clicklo-pos-thumb.jpg" alt="Clicklo POS dashboard">
-        </div>
-        <div class="case-body">
-          <div class="tag">Desktop app</div>
-          <h3>Clicklo POS</h3>
-          <p>A real installable point-of-sale system for retail businesses — no browser tab, no internet dependency. Built to keep working during a power flicker or a dropped connection.</p>
-          <ul class="case-features">
-            <li>Stock, invoicing, and profit/loss reporting with filters</li>
-            <li>Branded customer receipts, printer settings built in</li>
-            <li>Daily, weekly and monthly ledger closing</li>
-            <li>One-click backup — data stays on the shop's own machine</li>
-          </ul>
-          <a href="#contact" class="case-link">Get this for your shop</a>
+          <div class="flip-cards">
+
+            <div class="flip-card">
+              <div class="flip-card-split">
+                <div class="flip-card-media">
+                  <div class="ph"><b>Tradefix</b>Screenshot / mockup goes here</div>
+                </div>
+                <div>
+                  <div class="flip-card-tag">SaaS platform</div>
+                  <h3 class="flip-card-title">Tradefix</h3>
+                  <p class="flip-card-desc">An online sale and purchase management system built for teams who need their trading records accessible from anywhere — not tied to one machine or one branch.</p>
+                  <ul class="flip-card-cta-list">
+                    <li>Cloud-based, works from any device with a browser</li>
+                    <li>Sale and purchase entries with running balances</li>
+                    <li>Built for teams — multiple users, one source of truth</li>
+                  </ul>
+                  <a href="#contact" class="flip-card-cta">Talk through your workflow</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card">
+              <div class="flip-card-split">
+                <div class="flip-card-media">
+                  <img src="umrah-designer-thumb.jpg" alt="Umrah Designer plugin — package builder mockup">
+                </div>
+                <div>
+                  <div class="flip-card-tag">Plugin</div>
+                  <h3 class="flip-card-title">Umrah Designer</h3>
+                  <p class="flip-card-desc">A booking plugin that travel agencies embed directly into their own websites, turning a static enquiry form into a guided, app-like booking flow.</p>
+                  <ul class="flip-card-cta-list">
+                    <li>Visual, card-based package selection with a live price bar</li>
+                    <li>Auto-generated PDF quote on submission</li>
+                    <li>Full backend dashboard — agencies control pricing and fields themselves</li>
+                  </ul>
+                  <a href="#contact" class="flip-card-cta">Ask about this for your agency</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card">
+              <div class="flip-card-split">
+                <div class="flip-card-media">
+                  <img src="clicklo-pos-thumb.jpg" alt="Clicklo POS dashboard">
+                </div>
+                <div>
+                  <div class="flip-card-tag">Desktop app</div>
+                  <h3 class="flip-card-title">Clicklo POS</h3>
+                  <p class="flip-card-desc">A real installable point-of-sale system for retail businesses — no browser tab, no internet dependency. Built to keep working during a power flicker or a dropped connection.</p>
+                  <ul class="flip-card-cta-list">
+                    <li>Stock, invoicing, and profit/loss reporting with filters</li>
+                    <li>Daily, weekly and monthly ledger closing</li>
+                    <li>One-click backup — data stays on the shop's own machine</li>
+                  </ul>
+                  <a href="#contact" class="flip-card-cta">Get this for your shop</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="flip-hint">Scroll to flip through products</div>
+          <div class="flip-track"><div class="flip-track-fill"></div></div>
         </div>
       </div>
 
@@ -651,16 +664,17 @@
     document.querySelectorAll('.reveal').forEach(function(el){ el.style.opacity = 1; el.style.transform = 'none'; });
   }
 
-  /* ---------- website projects: scroll-driven flip carousel ---------- */
-  (function(){
-    var stage = document.getElementById('flipStage');
+  /* ---------- scroll-driven flip carousels (Websites + Products) ---------- */
+  function setupFlipCarousel(stageId){
+    var stage = document.getElementById(stageId);
     if (!stage) return;
     var cards = gsap.utils.toArray('.flip-card', stage);
     var n = cards.length;
     var curLabel = stage.querySelector('.flip-progress .cur');
-    var trackFill = document.getElementById('flipTrackFill');
+    var trackFill = stage.querySelector('.flip-track-fill');
+    var isNarrow = window.innerWidth < 860;
 
-    if (reduceMotion || !window.gsap || !window.ScrollTrigger) {
+    if (reduceMotion || isNarrow || !window.gsap || !window.ScrollTrigger) {
       stage.classList.add('no-pin');
       return;
     }
@@ -689,7 +703,17 @@
       tl.to(cards[j], { rotateY: -90, opacity: 0 }, j);
       tl.to(cards[j + 1], { rotateY: 0, opacity: 1 }, j);
     }
-  })();
+  }
+
+  if (window.gsap && window.ScrollTrigger) {
+    setupFlipCarousel('flipStage');
+    setupFlipCarousel('productsStage');
+  } else {
+    ['flipStage', 'productsStage'].forEach(function(id){
+      var s = document.getElementById(id);
+      if (s) s.classList.add('no-pin');
+    });
+  }
 
   /* ---------- tilt on clicklo mark ---------- */
   var mark = document.getElementById('clickloMark');
