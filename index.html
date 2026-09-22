@@ -708,6 +708,20 @@
   if (window.gsap && window.ScrollTrigger) {
     setupFlipCarousel('flipStage');
     setupFlipCarousel('productsStage');
+
+    /* Fonts and images loading after ScrollTrigger's initial measurement
+       shift page height, which drifts pinned sections out of sync with
+       real scroll position (visible as pinned content overlapping what
+       comes after it). Recalculate once everything has actually settled. */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function(){ ScrollTrigger.refresh(); });
+    }
+    window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+    var refreshTimer;
+    window.addEventListener('resize', function(){
+      clearTimeout(refreshTimer);
+      refreshTimer = setTimeout(function(){ ScrollTrigger.refresh(); }, 200);
+    });
   } else {
     ['flipStage', 'productsStage'].forEach(function(id){
       var s = document.getElementById(id);
