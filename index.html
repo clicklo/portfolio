@@ -141,7 +141,7 @@
   @keyframes scrollmq{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 
   /* ---------- section shells ---------- */
-  section{ padding:140px 0; position:relative; }
+  section{ padding:100px 0; position:relative; }
   .sec-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:40px; margin-bottom:72px; flex-wrap:wrap; }
   .sec-head h2{ font-size:clamp(1.9rem, 3.4vw, 2.8rem); max-width:14ch; }
   .sec-head .sub{ max-width:34ch; color:var(--text-dim); font-size:1rem; }
@@ -153,7 +153,7 @@
   /* ---------- about ---------- */
   .about-grid{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start; }
   .about-portrait{
-    position:relative; border-radius:8px; overflow:hidden; aspect-ratio:3/4; border:1px solid var(--line);
+    position:relative; border-radius:8px; overflow:hidden; aspect-ratio:3/4; max-height:520px; border:1px solid var(--line);
     background:var(--surface);
   }
   .about-portrait img{ width:100%; height:100%; object-fit:cover; object-position:top center; filter:grayscale(0.15); }
@@ -195,7 +195,7 @@
 
 
   /* website project flip-carousel */
-  .flip-section{ margin-bottom:60px; }
+  .flip-section{ margin-bottom:20px; }
   .flip-eyebrow{ margin-bottom:8px; }
   .flip-stage{
     position:relative; height:74vh; min-height:520px; max-height:720px;
@@ -207,13 +207,14 @@
     backface-visibility:hidden; transform-style:preserve-3d; will-change:transform, opacity;
   }
   .flip-card-inner{ max-width:660px; }
+  .flip-card-meta{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
   .flip-logo-badge{
-    display:inline-flex; align-items:center; margin-bottom:30px; min-height:34px;
+    display:inline-flex; align-items:center;
   }
   .flip-logo-badge img{ height:32px; width:auto; display:block; max-width:220px; object-fit:contain; }
   .flip-card-tag{
-    display:inline-block; font-size:0.78rem; color:var(--text-dim); border:1px solid var(--line);
-    padding:6px 12px; border-radius:var(--radius); margin-bottom:20px;
+    display:inline-flex; align-items:center; font-size:0.78rem; color:var(--text-dim); border:1px solid var(--line);
+    padding:6px 12px; border-radius:var(--radius);
   }
   .flip-card-title{ font-family:'Sora'; font-weight:700; font-size:clamp(2rem, 4.2vw, 3.4rem); line-height:1.05; margin-bottom:22px; max-width:14ch; letter-spacing:-0.02em; }
   .flip-card-desc{ color:var(--text-dim); font-size:1.05rem; max-width:54ch; margin-bottom:30px; }
@@ -269,7 +270,7 @@
 
   /* ---------- contact / CTA ---------- */
   .contact{ text-align:left; }
-  .contact-top{ display:grid; grid-template-columns:1.3fr 0.7fr; gap:60px; align-items:end; margin-bottom:40px; }
+  .contact-top{ display:grid; grid-template-columns:1.3fr 0.7fr; gap:60px; align-items:start; margin-bottom:40px; }
   .contact h2{
     font-size:clamp(2.4rem, 6.4vw, 5.2rem); line-height:1.02; max-width:14ch;
   }
@@ -314,7 +315,7 @@
     <div class="hero-photo"><img src="aftab-hero.jpg" alt="Aftab, founder of Clicklo"></div>
     <div class="hero-inner">
       <div class="eyebrow"><span class="bar"></span>Software developer &amp; founder</div>
-      <h1 class="reveal" id="heroTitle">Aftab — who <span class="accent">ships</span>, <br>not just codes.</h1>
+      <h1 class="reveal" id="heroTitle">Aftab — who <span class="accent">ships</span>, not just codes.</h1>
       <p class="lede reveal">From first sketch to a client using it daily, I own delivery end to end: web builds, booking plugins, trade platforms, and the desktop POS software that keeps a shop running. Based in Pakistan, working with teams everywhere.</p>
       <div class="hero-ctas reveal">
         <a href="#work" class="btn btn-solid">See the work</a>
@@ -410,8 +411,10 @@
 
             <div class="flip-card">
               <div class="flip-card-inner">
-                <span class="flip-logo-badge"><img src="hyundai-logo.png" alt="Hyundai Sargodha"></span>
-                <div class="flip-card-tag">Automotive</div>
+                <div class="flip-card-meta">
+                  <span class="flip-logo-badge"><img src="hyundai-logo.png" alt="Hyundai Sargodha"></span>
+                  <div class="flip-card-tag">Automotive</div>
+                </div>
                 <h3 class="flip-card-title">Hyundai Sargodha</h3>
                 <p class="flip-card-desc">Automotive dealership site with a custom price calculator that lets buyers work through pricing interactively instead of calling in.</p>
                 <div class="flip-card-links">
@@ -423,8 +426,10 @@
 
             <div class="flip-card">
               <div class="flip-card-inner">
-                <span class="flip-logo-badge"><img src="ecos-logo.png" alt="ECOS IT"></span>
-                <div class="flip-card-tag">IT &amp; hardware</div>
+                <div class="flip-card-meta">
+                  <span class="flip-logo-badge"><img src="ecos-logo.png" alt="ECOS IT"></span>
+                  <div class="flip-card-tag">IT &amp; hardware</div>
+                </div>
                 <h3 class="flip-card-title">ECOS IT</h3>
                 <p class="flip-card-desc">WordPress business site for an IT hardware company — stock-focused sections, service content, and a lead-oriented page structure.</p>
                 <div class="flip-card-links">
@@ -435,8 +440,10 @@
 
             <div class="flip-card">
               <div class="flip-card-inner">
-                <span class="flip-logo-badge"><img src="ptf-logo.png" alt="Pakistan Teachers Forum"></span>
-                <div class="flip-card-tag">Organization</div>
+                <div class="flip-card-meta">
+                  <span class="flip-logo-badge"><img src="ptf-logo.png" alt="Pakistan Teachers Forum"></span>
+                  <div class="flip-card-tag">Organization</div>
+                </div>
                 <h3 class="flip-card-title">Pakistan Teachers Forum</h3>
                 <p class="flip-card-desc">Structured organization site handling news and events, contact flows, and a large amount of ongoing content.</p>
                 <div class="flip-card-links">
@@ -447,7 +454,9 @@
 
             <div class="flip-card">
               <div class="flip-card-inner">
-                <div class="flip-card-tag">Medical</div>
+                <div class="flip-card-meta">
+                  <div class="flip-card-tag">Medical</div>
+                </div>
                 <h3 class="flip-card-title">Medica International</h3>
                 <p class="flip-card-desc">Category-driven site for an international medical products business, with service pages built for an outward-facing audience.</p>
                 <div class="flip-card-links">
@@ -458,8 +467,10 @@
 
             <div class="flip-card">
               <div class="flip-card-inner">
-                <span class="flip-logo-badge"><img src="richgems-logo.png" alt="Rich From Gems"></span>
-                <div class="flip-card-tag">Ecommerce</div>
+                <div class="flip-card-meta">
+                  <span class="flip-logo-badge"><img src="richgems-logo.png" alt="Rich From Gems"></span>
+                  <div class="flip-card-tag">Ecommerce</div>
+                </div>
                 <h3 class="flip-card-title">Rich From Gems</h3>
                 <p class="flip-card-desc">Ecommerce WordPress store with product listings, category pages, promotional sections, and a full shopping flow.</p>
                 <div class="flip-card-links">
@@ -470,8 +481,10 @@
 
             <div class="flip-card">
               <div class="flip-card-inner">
-                <span class="flip-logo-badge"><img src="jaecoo-logo.png" alt="Omoda | Jaecoo"></span>
-                <div class="flip-card-tag">Automotive · in progress</div>
+                <div class="flip-card-meta">
+                  <span class="flip-logo-badge"><img src="jaecoo-logo.png" alt="Omoda | Jaecoo"></span>
+                  <div class="flip-card-tag">Automotive · in progress</div>
+                </div>
                 <h3 class="flip-card-title">Jaecoo</h3>
                 <p class="flip-card-desc">Automotive build centered on a multi-step booking flow — brand, variant, colour, interior, pricing, freight, and personal details.</p>
                 <div class="flip-card-links">
@@ -489,7 +502,7 @@
       </div>
 
       <!-- Products (Clicklo) — scroll-driven flip carousel -->
-      <div class="flip-section" id="productsSection" style="margin-top:80px;">
+      <div class="flip-section" id="productsSection" style="margin-top:40px;">
         <div class="flip-eyebrow">
           <div class="tag reveal">Products</div>
           <p class="sub reveal" style="margin-bottom:0; max-width:60ch;">Software built and shipped under Clicklo — scroll to explore.</p>
@@ -506,7 +519,7 @@
                   <div class="ph"><b>Tradefix</b>Screenshot / mockup goes here</div>
                 </div>
                 <div>
-                  <div class="flip-card-tag">SaaS platform</div>
+                  <div class="flip-card-meta"><div class="flip-card-tag">SaaS platform</div></div>
                   <h3 class="flip-card-title">Tradefix</h3>
                   <p class="flip-card-desc">An online sale and purchase management system built for teams who need their trading records accessible from anywhere — not tied to one machine or one branch.</p>
                   <ul class="flip-card-cta-list">
@@ -525,7 +538,7 @@
                   <img src="umrah-designer-thumb.jpg" alt="Umrah Designer plugin — package builder mockup">
                 </div>
                 <div>
-                  <div class="flip-card-tag">Plugin</div>
+                  <div class="flip-card-meta"><div class="flip-card-tag">Plugin</div></div>
                   <h3 class="flip-card-title">Umrah Designer</h3>
                   <p class="flip-card-desc">A booking plugin that travel agencies embed directly into their own websites, turning a static enquiry form into a guided, app-like booking flow.</p>
                   <ul class="flip-card-cta-list">
@@ -544,7 +557,7 @@
                   <img src="clicklo-pos-thumb.jpg" alt="Clicklo POS dashboard">
                 </div>
                 <div>
-                  <div class="flip-card-tag">Desktop app</div>
+                  <div class="flip-card-meta"><div class="flip-card-tag">Desktop app</div></div>
                   <h3 class="flip-card-title">Clicklo POS</h3>
                   <p class="flip-card-desc">A real installable point-of-sale system for retail businesses — no browser tab, no internet dependency. Built to keep working during a power flicker or a dropped connection.</p>
                   <ul class="flip-card-cta-list">
@@ -690,6 +703,7 @@
         scrub: 0.5,
         pin: true,
         anticipatePin: 1,
+        fastScrollEnd: true,
         onUpdate: function(self){
           var idx = Math.min(n - 1, Math.round(self.progress * (n - 1)));
           if (curLabel) curLabel.textContent = String(idx + 1).padStart(2, '0');
