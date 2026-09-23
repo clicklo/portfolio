@@ -248,7 +248,7 @@
     position:relative; aspect-ratio:4/3; border-radius:8px; overflow:hidden; border:1px solid var(--line);
     background:var(--surface);
   }
-  .flip-card-media img{ width:100%; height:100%; object-fit:cover; }
+  .flip-card-media img{ width:100%; height:100%; object-fit:contain; }
   .flip-card-media .ph{
     position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
     color:var(--text-faint); font-size:0.82rem; text-align:center; padding:20px;
@@ -270,7 +270,7 @@
 
   /* ---------- contact / CTA ---------- */
   .contact{ text-align:left; }
-  .contact-top{ display:grid; grid-template-columns:1.3fr 0.7fr; gap:60px; align-items:start; margin-bottom:40px; }
+  .contact-top{ display:grid; grid-template-columns:1.3fr 0.7fr; gap:60px; align-items:start; }
   .contact h2{
     font-size:clamp(2.4rem, 6.4vw, 5.2rem); line-height:1.02; max-width:14ch;
   }
@@ -279,11 +279,10 @@
   }
   .contact-photo img{ width:100%; height:100%; object-fit:cover; object-position:top center; }
   @media (max-width:860px){ .contact-top{ grid-template-columns:1fr; } .contact-photo{ max-width:260px; } }
-  .contact-row{ display:flex; justify-content:space-between; align-items:flex-end; gap:40px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:40px; }
-  .contact-links{ display:flex; flex-direction:column; gap:14px; }
-  .contact-links a{ font-size:1.4rem; font-family:'Sora'; font-weight:600; }
+  .contact-links{ display:flex; flex-direction:column; gap:12px; margin-top:36px; }
+  .contact-links a{ font-size:1.3rem; font-family:'Sora'; font-weight:600; }
   .contact-links a:hover{ color:var(--blue); }
-  .contact-social{ display:flex; gap:22px; color:var(--text-dim); font-size:0.9rem; }
+  .contact-social{ display:flex; gap:22px; color:var(--text-dim); font-size:0.9rem; margin-top:24px; }
   .contact-social a:hover{ color:var(--text); }
 
   footer{ padding:32px 6vw; border-top:1px solid var(--line); display:flex; justify-content:space-between; color:var(--text-faint); font-size:0.8rem; flex-wrap:wrap; gap:10px; }
@@ -315,7 +314,7 @@
     <div class="hero-photo"><img src="aftab-hero.jpg" alt="Aftab, founder of Clicklo"></div>
     <div class="hero-inner">
       <div class="eyebrow"><span class="bar"></span>Software developer &amp; founder</div>
-      <h1 class="reveal" id="heroTitle">Aftab — who <span class="accent">ships</span>, <br>not just codes.</h1>
+      <h1 class="reveal" id="heroTitle">Aftab — who <span class="accent">ships</span>, not just codes.</h1>
       <p class="lede reveal">From first sketch to a client using it daily, I own delivery end to end: web builds, booking plugins, trade platforms, and the desktop POS software that keeps a shop running. Based in Pakistan, working with teams everywhere.</p>
       <div class="hero-ctas reveal">
         <a href="#work" class="btn btn-solid">See the work</a>
@@ -404,92 +403,128 @@
           <p class="sub reveal" style="margin-bottom:0; max-width:60ch;">Client sites built through Firm11 — scroll to explore.</p>
         </div>
 
-        <div class="flip-stage" id="flipStage">
+        <div class="flip-stage flip-stage--split" id="flipStage">
           <div class="flip-progress"><span class="cur">01</span><span class="tot">/ 06</span></div>
 
           <div class="flip-cards">
 
             <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-meta">
-                  <span class="flip-logo-badge"><img src="hyundai-logo.png" alt="Hyundai Sargodha"></span>
-                  <div class="flip-card-tag">Automotive</div>
+              <div class="flip-card-split">
+                <div class="flip-card-media">
+                  <!-- IMAGE SLOT: hyundai-thumb.jpg -->
+                  <div class="ph"><b>Hyundai Sargodha</b>Website screenshot goes here</div>
                 </div>
-                <h3 class="flip-card-title">Hyundai Sargodha</h3>
-                <p class="flip-card-desc">Automotive dealership site with a custom price calculator that lets buyers work through pricing interactively instead of calling in.</p>
-                <div class="flip-card-links">
-                  <a href="https://hyundaisargodha.com" target="_blank" rel="noopener">hyundaisargodha.com</a>
-                  <a href="https://hyundaisargodha.com/price-calculator" target="_blank" rel="noopener">Price calculator →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-meta">
-                  <span class="flip-logo-badge"><img src="ecos-logo.png" alt="ECOS IT"></span>
-                  <div class="flip-card-tag">IT &amp; hardware</div>
-                </div>
-                <h3 class="flip-card-title">ECOS IT</h3>
-                <p class="flip-card-desc">WordPress business site for an IT hardware company — stock-focused sections, service content, and a lead-oriented page structure.</p>
-                <div class="flip-card-links">
-                  <a href="https://ecos-it.com" target="_blank" rel="noopener">ecos-it.com</a>
+                <div>
+                  <div class="flip-card-meta">
+                    <span class="flip-logo-badge"><img src="hyundai-logo.png" alt="Hyundai Sargodha"></span>
+                    <div class="flip-card-tag">Automotive</div>
+                  </div>
+                  <h3 class="flip-card-title">Hyundai Sargodha</h3>
+                  <p class="flip-card-desc">Automotive dealership site with a custom price calculator that lets buyers work through pricing interactively instead of calling in.</p>
+                  <div class="flip-card-links">
+                    <a href="https://hyundaisargodha.com" target="_blank" rel="noopener">hyundaisargodha.com</a>
+                    <a href="https://hyundaisargodha.com/price-calculator" target="_blank" rel="noopener">Price calculator →</a>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-meta">
-                  <span class="flip-logo-badge"><img src="ptf-logo.png" alt="Pakistan Teachers Forum"></span>
-                  <div class="flip-card-tag">Organization</div>
+              <div class="flip-card-split">
+                <div class="flip-card-media">
+                  <!-- IMAGE SLOT: ecos-thumb.jpg -->
+                  <div class="ph"><b>ECOS IT</b>Website screenshot goes here</div>
                 </div>
-                <h3 class="flip-card-title">Pakistan Teachers Forum</h3>
-                <p class="flip-card-desc">Structured organization site handling news and events, contact flows, and a large amount of ongoing content.</p>
-                <div class="flip-card-links">
-                  <a href="https://ptf2019.pk" target="_blank" rel="noopener">ptf2019.pk</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-meta">
-                  <div class="flip-card-tag">Medical</div>
-                </div>
-                <h3 class="flip-card-title">Medica International</h3>
-                <p class="flip-card-desc">Category-driven site for an international medical products business, with service pages built for an outward-facing audience.</p>
-                <div class="flip-card-links">
-                  <a href="http://medicaint.com" target="_blank" rel="noopener">medicaint.com</a>
+                <div>
+                  <div class="flip-card-meta">
+                    <span class="flip-logo-badge"><img src="ecos-logo.png" alt="ECOS IT"></span>
+                    <div class="flip-card-tag">IT &amp; hardware</div>
+                  </div>
+                  <h3 class="flip-card-title">ECOS IT</h3>
+                  <p class="flip-card-desc">WordPress business site for an IT hardware company — stock-focused sections, service content, and a lead-oriented page structure.</p>
+                  <div class="flip-card-links">
+                    <a href="https://ecos-it.com" target="_blank" rel="noopener">ecos-it.com</a>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-meta">
-                  <span class="flip-logo-badge"><img src="richgems-logo.png" alt="Rich From Gems"></span>
-                  <div class="flip-card-tag">Ecommerce</div>
+              <div class="flip-card-split">
+                <div class="flip-card-media">
+                  <!-- IMAGE SLOT: ptf-thumb.jpg -->
+                  <div class="ph"><b>Pakistan Teachers Forum</b>Website screenshot goes here</div>
                 </div>
-                <h3 class="flip-card-title">Rich From Gems</h3>
-                <p class="flip-card-desc">Ecommerce WordPress store with product listings, category pages, promotional sections, and a full shopping flow.</p>
-                <div class="flip-card-links">
-                  <a href="https://richfromgems.com" target="_blank" rel="noopener">richfromgems.com</a>
+                <div>
+                  <div class="flip-card-meta">
+                    <span class="flip-logo-badge"><img src="ptf-logo.png" alt="Pakistan Teachers Forum"></span>
+                    <div class="flip-card-tag">Organization</div>
+                  </div>
+                  <h3 class="flip-card-title">Pakistan Teachers Forum</h3>
+                  <p class="flip-card-desc">Structured organization site handling news and events, contact flows, and a large amount of ongoing content.</p>
+                  <div class="flip-card-links">
+                    <a href="https://ptf2019.pk" target="_blank" rel="noopener">ptf2019.pk</a>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-meta">
-                  <span class="flip-logo-badge"><img src="jaecoo-logo.png" alt="Omoda | Jaecoo"></span>
-                  <div class="flip-card-tag">Automotive · in progress</div>
+              <div class="flip-card-split">
+                <div class="flip-card-media">
+                  <!-- IMAGE SLOT: medica-thumb.jpg -->
+                  <div class="ph"><b>Medica International</b>Website screenshot goes here</div>
                 </div>
-                <h3 class="flip-card-title">Jaecoo</h3>
-                <p class="flip-card-desc">Automotive build centered on a multi-step booking flow — brand, variant, colour, interior, pricing, freight, and personal details.</p>
-                <div class="flip-card-links">
-                  <a href="http://jaecoo.firmeleven.com" target="_blank" rel="noopener">jaecoo.firmeleven.com</a>
-                  <a href="http://jaecoo.firmeleven.com/booking" target="_blank" rel="noopener">Booking form →</a>
+                <div>
+                  <div class="flip-card-meta">
+                    <div class="flip-card-tag">Medical</div>
+                  </div>
+                  <h3 class="flip-card-title">Medica International</h3>
+                  <p class="flip-card-desc">Category-driven site for an international medical products business, with service pages built for an outward-facing audience.</p>
+                  <div class="flip-card-links">
+                    <a href="http://medicaint.com" target="_blank" rel="noopener">medicaint.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card">
+              <div class="flip-card-split">
+                <div class="flip-card-media">
+                  <!-- IMAGE SLOT: richgems-thumb.jpg -->
+                  <div class="ph"><b>Rich From Gems</b>Website screenshot goes here</div>
+                </div>
+                <div>
+                  <div class="flip-card-meta">
+                    <span class="flip-logo-badge"><img src="richgems-logo.png" alt="Rich From Gems"></span>
+                    <div class="flip-card-tag">Ecommerce</div>
+                  </div>
+                  <h3 class="flip-card-title">Rich From Gems</h3>
+                  <p class="flip-card-desc">Ecommerce WordPress store with product listings, category pages, promotional sections, and a full shopping flow.</p>
+                  <div class="flip-card-links">
+                    <a href="https://richfromgems.com" target="_blank" rel="noopener">richfromgems.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card">
+              <div class="flip-card-split">
+                <div class="flip-card-media">
+                  <!-- IMAGE SLOT: jaecoo-thumb.jpg -->
+                  <div class="ph"><b>Jaecoo</b>Website screenshot goes here</div>
+                </div>
+                <div>
+                  <div class="flip-card-meta">
+                    <span class="flip-logo-badge"><img src="jaecoo-logo.png" alt="Omoda | Jaecoo"></span>
+                    <div class="flip-card-tag">Automotive · in progress</div>
+                  </div>
+                  <h3 class="flip-card-title">Jaecoo</h3>
+                  <p class="flip-card-desc">Automotive build centered on a multi-step booking flow — brand, variant, colour, interior, pricing, freight, and personal details.</p>
+                  <div class="flip-card-links">
+                    <a href="http://jaecoo.firmeleven.com" target="_blank" rel="noopener">jaecoo.firmeleven.com</a>
+                    <a href="http://jaecoo.firmeleven.com/booking" target="_blank" rel="noopener">Booking form →</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -516,6 +551,7 @@
             <div class="flip-card">
               <div class="flip-card-split">
                 <div class="flip-card-media">
+                  <!-- IMAGE SLOT: tradefix-thumb.jpg -->
                   <div class="ph"><b>Tradefix</b>Screenshot / mockup goes here</div>
                 </div>
                 <div>
@@ -587,20 +623,18 @@
         <div>
           <div class="tag reveal">Available for new projects</div>
           <h2 class="reveal">Got something to build? Let's talk.</h2>
+          <div class="contact-links reveal">
+            <a href="mailto:aftab@clicklo.pk">aftab@clicklo.pk</a>
+            <a href="tel:+923409264574">+92 340 926 45 74</a>
+          </div>
+          <div class="contact-social reveal">
+            <a href="https://www.linkedin.com/in/itaftabiqbal" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="#" target="_blank" rel="noopener">Facebook</a>
+            <a href="#" target="_blank" rel="noopener">Instagram</a>
+          </div>
         </div>
         <div class="contact-photo reveal">
           <img src="aftab-creative.jpg" alt="Aftab">
-        </div>
-      </div>
-      <div class="contact-row reveal">
-        <div class="contact-links">
-          <a href="mailto:aftab@clicklo.pk">aftab@clicklo.pk</a>
-          <a href="tel:+923409264574">+92 340 926 45 74</a>
-        </div>
-        <div class="contact-social">
-          <a href="https://www.linkedin.com/in/itaftabiqbal" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="#" target="_blank" rel="noopener">Facebook</a>
-          <a href="#" target="_blank" rel="noopener">Instagram</a>
         </div>
       </div>
     </div>
@@ -667,7 +701,7 @@
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
     });
 
-    gsap.utils.toArray('.case-media, .about-portrait, .contact-photo').forEach(function(card){
+    gsap.utils.toArray('.about-portrait, .contact-photo').forEach(function(card){
       gsap.fromTo(card, { y: 30 }, {
         y: 0, duration: 1, ease: 'power3.out',
         scrollTrigger: { trigger: card, start: 'top 90%' }
